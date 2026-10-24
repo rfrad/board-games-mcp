@@ -34,7 +34,8 @@ The route has no authorizer. The Lambda validates each token itself with a JWT l
 
 #### Cons
 
-- More code to write and maintain, in a security-sensitive area.
+- More code in a security-sensitive area, even though the MCP SDK v2 provides a helper that produces the 401.
+- Mixes authentication into the Lambda, which should only handle teaching content.
 - Requests without a valid token reach and invoke the Lambda.
 
 ## Decision
