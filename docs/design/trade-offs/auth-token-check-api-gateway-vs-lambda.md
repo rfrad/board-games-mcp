@@ -2,7 +2,7 @@
 
 ## Context
 
-When a request has no valid token, Claude expects a 401 whose WWW-Authenticate header points to the protected resource metadata page, so it can find where to sign in. API Gateway's JWT authorizer returns a 401 with a WWW-Authenticate header, but AWS's documented example has no resource_metadata pointer, and no way to add one was found. Claude falls back to probing /.well-known/oauth-protected-resource on the server's domain when the pointer is missing.
+This follows from choosing an HTTP API (see [api-gateway-http-vs-rest.md](api-gateway-http-vs-rest.md)). When a request has no valid token, Claude expects a 401 whose WWW-Authenticate header points to the protected resource metadata page. The HTTP API's JWT authorizer returns a 401 without that pointer, and no way to add one was found. A REST API may allow customising this 401, but that was not checked. Without the pointer, Claude falls back to probing /.well-known/oauth-protected-resource on the server's domain.
 
 ## Options considered
 
